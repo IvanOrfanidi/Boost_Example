@@ -27,6 +27,11 @@ set(SOURCES_THREAD
 add_executable(${PROJECT_NAME}_split ${SOURCES_SPLIT})
 add_executable(${PROJECT_NAME}_thread ${SOURCES_THREAD})
 
+# Boost flags
+set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_MULTITHREADED ON)
+set(Boost_USE_STATIC_RUNTIME OFF)
+
 # Find boost
 if(WIN32)
     find_package(Boost COMPONENTS thread)
