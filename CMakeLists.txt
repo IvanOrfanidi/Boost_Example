@@ -27,10 +27,19 @@ set(SOURCES_THREAD
 add_executable(${PROJECT_NAME}_split ${SOURCES_SPLIT})
 add_executable(${PROJECT_NAME}_thread ${SOURCES_THREAD})
 
+
 # Boost flags
 set(Boost_USE_STATIC_LIBS ON)
 set(Boost_USE_MULTITHREADED ON)
 set(Boost_USE_STATIC_RUNTIME OFF)
+
+if(UNIX)
+    set(CMAKE_THREAD_LIBS_INIT "-lpthread")
+    set(CMAKE_HAVE_THREADS_LIBRARY ON)
+    set(CMAKE_USE_WIN32_THREADS_INIT OFF)
+    set(CMAKE_USE_PTHREADS_INIT ON)
+    set(THREADS_PREFER_PTHREAD_FLAG ON)
+endif()
 
 # Find boost
 if(WIN32)
